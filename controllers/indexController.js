@@ -71,3 +71,60 @@ exports.getLogout = (req, res, next) => {
     res.redirect("/login");
   }
 };
+
+exports.getAllProduct = async (req, res) => {
+  let products = await models.Product.findAll();
+  res.render("index", { products: products });
+};
+// 122-123 has to many
+exports.getProduct = async (req, res) => {
+  const productId = req.params.productId;
+  const product = await models.Product.findOne({
+    include: [
+      {
+        model: models.Comment,
+        as: "comments",
+      },
+    ],
+    where: {
+      id: productId,
+    },
+  });
+  console.log(product.dataValues);
+  res.render("product-details", product.dataValues);
+};
+
+exports.postComment = async (req, res) => {
+  let productId = parseInt(req.body.productId);
+  let title = req.body.title;
+  let description = req.body.description;
+  let comment = models.Comment.build({
+    title,
+    description,
+    productId,
+  });
+  let saveComment = await comment.save();
+  if (saveComment) {
+    res.redirect(`/products/${productId}`);
+  } else {
+    res.redirect("/product-details", { message: "Error adding Comment ! " });
+  }
+};
+
+//123 belongsTo
+exports.getComment = async (req, res) => {
+  let commentId = req.params.commentId;
+  let comment = await models.Comment.findOne({
+    include: [
+      {
+        model: models.Product,
+        as: "product",
+      },
+    ],
+    where: {
+      id: commentId,
+    },
+  });
+  console.log(comment);
+  res.json(comment);
+};

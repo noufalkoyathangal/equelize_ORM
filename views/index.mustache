@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> header}}
+    <title>Sell Your Stuff</title>
+  </head>
+  <body>
+    <div class="container">
+      {{> menu}}
+      <div class="card mt-3">
+        <ul class="list-group">
+          {{#products}}
+          <img
+            src="/uploads/{{ imageURL }}"
+            alt="n"
+            class="product-preview-image"
+          />
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center mt-3"
+          >
+            <a href="/products/{{ id }}">{{ title }}</a>
+            <small>${{ price }}</small>
+          </li>
+
+          {{/products}}
+        </ul>
+      </div>
+    </div>
+    {{> footer}}
+  </body>
+</html>

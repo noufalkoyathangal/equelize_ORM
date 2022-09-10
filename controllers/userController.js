@@ -48,7 +48,7 @@ exports.postAddProduct = async (req, res) => {
     res.redirect("/users/add-product", { message: "Unable to add product" });
   }
 };
-
+// Particulr user's
 exports.getAllProduct = async (req, res) => {
   let products = await models.Product.findAll({
     where: {

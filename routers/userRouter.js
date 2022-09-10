@@ -11,7 +11,7 @@ router.route("/add-product").post(userController.postAddProduct);
 router.route("/products").get(userController.getAllProduct);
 router.route("/delete-product").post(userController.deletProduct);
 router.route("/products/:productId").get(userController.getEdit);
-router.route("/upload/edit/:productId").post(userController.editImage)
-router.route("/update-product").post(userController.uploadProduct)
+router.route("/upload/edit/:productId").post(userController.editImage);
+router.route("/update-product").post(userController.uploadProduct);
 
 module.exports = router;
