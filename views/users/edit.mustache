@@ -5,11 +5,9 @@
     <title>Sell Your Stuff</title>
   </head>
   <body>
-    <h1>Edit Product</h1>
-
     <div class="container">
       {{> menu}}
-
+      <h3 class="display-6 d-flex p-2 justify-content-center">Edit Product</h3>
       <form
         action="/users/upload/edit/{{ id }}"
         method="POST"

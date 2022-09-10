@@ -5,11 +5,9 @@
     <title>Sell Your Stuff</title>
   </head>
   <body>
-    <h1>Add Product</h1>
-
     <div class="container">
       {{> menu}}
-
+      <h3 class="display-6 d-flex p-2 justify-content-center">Add Product</h3>
       <form action="/users/upload" method="POST" enctype="multipart/form-data">
         <label>Photo</label>
         <input type="file" name="photo" />

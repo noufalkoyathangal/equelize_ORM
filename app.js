@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const userRouter = require("./routers/userRouter");
 const indexRouter = require("./routers/indexRouter");
+const auth = require("./autharization_middleware/autharization");
 // const Auth = require("./utils/autherization");
 const mustacheExpress = require("mustache-express");
 const session = require("express-session");
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
-app.use("/users", userRouter);
+app.use("/users", auth, userRouter);
 // app.use("/", Auth, userRouter);
 
 // http://localhost:3000/site.css
