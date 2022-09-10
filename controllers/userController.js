@@ -81,3 +81,25 @@ exports.editImage = (req, res) => {
     res.render("users/edit", response);
   });
 };
+
+exports.uploadProduct = async (req, res) => {
+  const productId = req.body.productId;
+  const title = req.body.title;
+  const description = req.body.description;
+  const price = parseFloat(req.body.price);
+
+  const result = await models.Product.update(
+    {
+      title,
+      description,
+      price,
+      imageURL: uniqueFilename,
+    },
+    {
+      where: {
+        id: productId,
+      },
+    }
+  );
+  res.redirect("/users/products");
+};
